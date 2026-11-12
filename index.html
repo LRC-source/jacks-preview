@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jack's Fine Foods & Liquors — Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14110f;--paper:#fbf7ef;--red:#c8102e;--gold:#f2b632;--green:#1f6f4a;--muted:#6b645c;--card:#fff;--line:#e8e0d2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.5}
+a{color:inherit}
+.proto{background:var(--ink);color:#fff;font-size:12px;text-align:center;padding:6px 16px}
+.proto b{color:var(--gold)}
+header{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:2px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+.logo{font-family:'Archivo Black',sans-serif;font-size:20px;line-height:1;letter-spacing:-.5px}
+.logo small{display:block;font-family:Inter;font-weight:700;font-size:10px;letter-spacing:2px;color:var(--red);margin-top:3px}
+nav a{font-weight:600;font-size:14px;margin-left:14px;text-decoration:none}
+@media(max-width:640px){nav a:not(.call){display:none}}
+.call{background:var(--red);color:#fff;padding:8px 12px;border-radius:999px}
+.hero{padding:40px 16px 28px;max-width:1080px;margin:auto;display:grid;gap:24px}
+@media(min-width:800px){.hero{grid-template-columns:1.1fr .9fr;align-items:center;padding:64px 16px}}
+.tag{display:inline-block;background:var(--gold);font-weight:700;font-size:12px;padding:4px 10px;border-radius:4px;letter-spacing:1px}
+h1{font-family:'Archivo Black',sans-serif;font-size:clamp(34px,7vw,60px);line-height:1;margin:14px 0;letter-spacing:-1px}
+h1 span{color:var(--red)}
+.lead{font-size:18px;color:var(--muted);max-width:520px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{display:inline-block;font-weight:700;padding:14px 20px;border-radius:10px;text-decoration:none;border:2px solid var(--ink);cursor:pointer;font-size:15px}
+.btn.primary{background:var(--red);color:#fff;border-color:var(--red)}
+.btn.dd{background:#fff}
+.photo{border-radius:16px;min-height:260px;background:linear-gradient(135deg,#2b2420,#5a2a2a 60%,#c8102e);color:#fff;display:flex;align-items:flex-end;padding:16px;position:relative;overflow:hidden;border:2px solid var(--ink)}
+.photo::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 22px,rgba(255,255,255,.04) 22px 44px)}
+.photo p{position:relative;margin:0;font-size:13px;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:6px}
+.strip{background:var(--ink);color:#fff;overflow:hidden;white-space:nowrap;padding:10px 0;font-weight:700;font-size:14px}
+.strip span{display:inline-block;animation:slide 26s linear infinite}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+section{max-width:1080px;margin:auto;padding:44px 16px}
+h2{font-family:'Archivo Black',sans-serif;font-size:30px;margin:0 0 6px;letter-spacing:-.5px}
+.sub{color:var(--muted);margin:0 0 22px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.cat{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:16px;font-weight:700;box-shadow:4px 4px 0 var(--ink);transition:transform .15s}
+.cat:hover{transform:translate(-2px,-2px)}
+.cat .ic{font-size:28px;display:block;margin-bottom:8px}
+.cat small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.specials{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.deal{background:#fff;border:2px dashed var(--red);border-radius:14px;padding:18px;position:relative}
+.deal .price{font-family:'Archivo Black';font-size:28px;color:var(--red)}
+.deal .ends{font-size:12px;color:var(--muted)}
+.badge{position:absolute;top:-10px;right:12px;background:var(--gold);font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px}
+.panel{background:var(--green);color:#fff;border-radius:18px;padding:28px;display:grid;gap:18px}
+@media(min-width:800px){.panel{grid-template-columns:1fr 1fr;align-items:center}}
+.panel h2{color:#fff}
+form{display:flex;flex-direction:column;gap:10px}
+input,textarea{font:inherit;padding:12px;border-radius:10px;border:0;width:100%}
+.ok{display:none;background:var(--gold);color:var(--ink);padding:10px;border-radius:8px;font-weight:700}
+.info{display:grid;gap:14px}
+@media(min-width:800px){.info{grid-template-columns:1fr 1fr}}
+.box{background:#fff;border:2px solid var(--ink);border-radius:14px;padding:20px}
+.box table{width:100%;border-collapse:collapse;font-size:15px}
+.box td{padding:6px 0;border-bottom:1px solid var(--line)}
+.box td:last-child{text-align:right;font-weight:600}
+.fill{background:#fff6d6;border-radius:4px;padding:0 4px}
+.map{min-height:200px;background:linear-gradient(135deg,#e9e2d3,#d8cfbd);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600;text-align:center;padding:16px}
+.review{text-align:center}
+.stars{font-size:30px;color:var(--gold);letter-spacing:4px}
+footer{background:var(--ink);color:#cfc7bb;text-align:center;padding:28px 16px;font-size:13px}
+footer b{color:#fff}
+.gate{position:fixed;inset:0;background:rgba(20,17,15,.92);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}
+.gate .card{background:var(--paper);border-radius:18px;padding:28px;max-width:360px;text-align:center}
+.gate h3{font-family:'Archivo Black';font-size:24px;margin:0 0 8px}
+.hide{display:none!important}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <div class="card">
+    <div class="logo" style="font-size:24px">JACK'S<small>FINE FOODS &amp; LIQUORS</small></div>
+    <h3 style="margin-top:18px">Are you 21 or older?</h3>
+    <p style="color:var(--muted);margin:0 0 18px">You must be of legal drinking age to view our beer, wine and spirits.</p>
+    <div class="btns" style="justify-content:center">
+      <button class="btn primary" onclick="enter()">Yes, I'm 21+</button>
+      <button class="btn dd" onclick="alert('Thanks for stopping by! Come see us in store for snacks, groceries and essentials.')">No</button>
+    </div>
+  </div>
+</div>
+
+<div class="proto">🔒 <b>Private prototype</b> built for Jack's by LRC Digital Systems · not a live site · every photo, price and detail can be changed</div>
+
+<header>
+  <div class="logo">JACK'S<small>FINE FOODS &amp; LIQUORS</small></div>
+  <nav>
+    <a href="#shop">Shop</a><a href="#deals">Deals</a><a href="#visit">Visit</a>
+    <a class="call" href="tel:+14106652372">📞 Call</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div>
+    <span class="tag">YOUR NEIGHBORHOOD STORE</span>
+    <h1>Snacks, sips &amp; <span>everyday essentials</span> — right around the corner.</h1>
+    <p class="lead">Cold drinks, groceries, beer, wine and spirits. Stop in, call ahead for pickup, or get it delivered.</p>
+    <div class="btns">
+      <a class="btn primary" href="#" onclick="alert('In the live version, this opens Jack\'s DoorDash page.');return false">🚗 Order delivery on DoorDash</a>
+      <a class="btn dd" href="#pickup">📦 Call ahead for pickup</a>
+    </div>
+  </div>
+  <div class="photo"><p>📷 Your storefront photo goes here (we'll take one together)</p></div>
+</div>
+
+<div class="strip"><span>❄️ ICE COLD BEER &nbsp;•&nbsp; 🍷 WINE &amp; SPIRITS &nbsp;•&nbsp; 🥤 DRINKS &amp; SNACKS &nbsp;•&nbsp; 🛒 GROCERY BASICS &nbsp;•&nbsp; 🧻 HOUSEHOLD ESSENTIALS &nbsp;•&nbsp; 🔥 WEEKLY DEALS &nbsp;•&nbsp; ❄️ ICE COLD BEER &nbsp;•&nbsp; 🍷 WINE &amp; SPIRITS &nbsp;•&nbsp; 🥤 DRINKS &amp; SNACKS &nbsp;•&nbsp; 🛒 GROCERY BASICS &nbsp;•&nbsp; 🧻 HOUSEHOLD ESSENTIALS &nbsp;•&nbsp; 🔥 WEEKLY DEALS &nbsp;•&nbsp;</span></div>
+
+<section id="shop">
+  <h2>What's in the store</h2>
+  <p class="sub">A quick look at what you'll find. (Categories can be renamed or added anytime.)</p>
+  <div class="grid">
+    <div class="cat"><span class="ic">🍺</span>Beer<small>Cold singles, 6-packs &amp; cases</small></div>
+    <div class="cat"><span class="ic">🍷</span>Wine<small>Reds, whites &amp; bubbly</small></div>
+    <div class="cat"><span class="ic">🥃</span>Spirits<small>Minis to 1.75L</small></div>
+    <div class="cat"><span class="ic">🥤</span>Drinks<small>Soda, juice, water, energy</small></div>
+    <div class="cat"><span class="ic">🍿</span>Snacks<small>Chips, candy, sweets</small></div>
+    <div class="cat"><span class="ic">🛒</span>Grocery<small>Bread, milk, eggs &amp; basics</small></div>
+    <div class="cat"><span class="ic">🧻</span>Household<small>Paper goods &amp; cleaning</small></div>
+    <div class="cat"><span class="ic">🧊</span>Ice<small>Bags for parties &amp; coolers</small></div>
+  </div>
+</section>
+
+<section id="deals">
+  <h2>🔥 This week's deals</h2>
+  <p class="sub">Jack's team can update these in a minute from a phone — no tech skills needed.</p>
+  <div class="specials">
+    <div class="deal"><span class="badge">WEEKEND</span><b>Any 2 bags of chips</b><div class="price">2 for $X</div><div class="ends">Sample deal — real deals set by Jack's</div></div>
+    <div class="deal"><span class="badge">GAME DAY</span><b>Cold 12-pack + bag of ice</b><div class="price">Bundle $X</div><div class="ends">Sample deal — real deals set by Jack's</div></div>
+    <div class="deal"><span class="badge">NEW</span><b>Featured bottle of the week</b><div class="price">$X</div><div class="ends">Sample deal — real deals set by Jack's</div></div>
+  </div>
+</section>
+
+<section id="pickup">
+  <div class="panel">
+    <div>
+      <h2>Call ahead. Skip the wait.</h2>
+      <p style="margin:0;opacity:.9">Send your list and we'll have it bagged and ready at the counter. ID is checked at pickup for any alcohol.</p>
+    </div>
+    <form onsubmit="event.preventDefault();this.querySelector('.ok').style.display='block';this.reset()">
+      <input placeholder="Your name" required>
+      <input placeholder="Phone number" required>
+      <textarea rows="3" placeholder="What do you need? (e.g. milk, bread, 12-pack)"></textarea>
+      <button class="btn primary" style="border-color:#fff">Send my pickup order</button>
+      <div class="ok">✅ Got it! (Demo only — in the live site this texts or emails the store.)</div>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="panel" style="background:var(--red)">
+    <div>
+      <h2>Join the Jack's Text Club 📲</h2>
+      <p style="margin:0;opacity:.9">Get weekly deals and new arrivals by text. No spam — just the good stuff.</p>
+    </div>
+    <form onsubmit="event.preventDefault();this.querySelector('.ok').style.display='block';this.reset()">
+      <input placeholder="First name" required>
+      <input placeholder="Mobile number" required>
+      <button class="btn" style="background:var(--gold);border-color:var(--gold)">Sign me up</button>
+      <div class="ok">🎉 You're in! (Demo only.)</div>
+    </form>
+  </div>
+</section>
+
+<section id="visit">
+  <h2>Visit us</h2>
+  <p class="sub">Right in the neighborhood, open 7 days a week.</p>
+  <div class="info">
+    <div class="box">
+      <p style="margin-top:0"><b>📍 4519 Kenwood Ave</b><br>Baltimore, MD 21206</p>
+      <p><b>📞 <a href="tel:+14106652372">(410) 665-2372</a></b></p>
+      <table>
+        <tr><td>Mon – Thu</td><td>8:00 AM – 9:00 PM</td></tr>
+        <tr><td>Fri – Sat</td><td>8:00 AM – 9:30 PM</td></tr>
+        <tr><td>Sunday</td><td>8:00 AM – 8:00 PM</td></tr>
+      </table>
+      <p style="margin-bottom:0"><a class="btn dd" style="margin-top:12px" href="https://www.google.com/maps/search/?api=1&query=4519+Kenwood+Ave+Baltimore+MD+21206" target="_blank" rel="noopener">🧭 Get directions</a></p>
+    </div>
+    <iframe class="map" style="border:0;width:100%;padding:0" loading="lazy" title="Map to Jack's" src="https://maps.google.com/maps?q=4519+Kenwood+Ave,+Baltimore,+MD+21206&output=embed"></iframe>
+  </div>
+</section>
+
+<section class="review">
+  <div class="stars">★★★★★</div>
+  <h2>Love Jack's?</h2>
+  <p class="sub">A quick Google review helps neighbors find us.</p>
+  <a class="btn primary" href="#" onclick="alert('In the live version, this opens Jack\'s Google review page.');return false">Leave a review</a>
+</section>
+
+<footer>
+  <b>Jack's Fine Foods &amp; Liquors</b><br>Please drink responsibly. Must be 21+ to purchase alcohol. ID required.
+  <p style="margin:14px 0 0;opacity:.7">Prototype designed &amp; built by LRC Digital Systems</p>
+</footer>
+
+<script>
+function enter(){document.getElementById('gate').classList.add('hide');try{sessionStorage.setItem('jk21','1')}catch(e){}}
+try{if(sessionStorage.getItem('jk21'))document.getElementById('gate').classList.add('hide')}catch(e){}
+</script>
+</body>
+</html>
